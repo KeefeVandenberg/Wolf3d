@@ -6,11 +6,41 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/15 18:38:49 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/15 19:57:30 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int ft_mapper(t_read *head, t_map *map)
+{
+    t_read *e;
+    t_read *tmp;
+
+    e = head;
+    map = malloc(sizeof(t_map));
+    while(head->next)
+    {
+        tmp = ft_find_struct(head->x + 1, head->y, head);
+        tmp == NULL ? map->right = NULL : ft_read_to_map(tmp, head->right);
+    }
+}
+
+t_read *ft_find_struct(int x, int y, t_read *head)
+{
+    if (x - 1 < 0)
+        return (NULL);
+    if (y - 1 < 0)
+        return (NULL);
+    while (1)
+    {
+        if (head->x == x && head->y == y)
+            return (head);
+        if (head->next == NULL)
+            return (NULL);
+        head = head->next;
+    }
+}
 
 int parse(t_read *current, char *str, int y, int x)
 {
@@ -72,12 +102,13 @@ int ft_initread(char *str, t_read *all)
 int main(int argc, char **argv)
 {
     t_read *head;
+    t_map *map;
 
     head = malloc(sizeof(t_read));
     head->next = NULL;
     if (argc == 2)
     {
         ft_initread(argv[1], head);
-        //ft_mapper(head, map);
+        ft_mapper(head, map);
     }
 }
