@@ -22,8 +22,14 @@ int ft_mapper(t_read *head, t_map *map)
     while(head->next)
     {
         tmp = ft_find_struct(head->x + 1, head->y, head);
-        tmp == NULL ? map->right = NULL : ft_read_to_map(tmp, head->right);
-    }
+        tmp == NULL ? map->right = NULL : ft_read_to_map(tmp, map->right);
+        tmp = ft_find_struct(head->x, head->y + 1, head);
+        tmp == NULL ? map->up = NULL : ft_read_to_map(tmp, map->up);
+        tmp = ft_find_struct(head->x - 1, head->y, head);
+        tmp == NULL ? map->left = NULL : ft_read_to_map(tmp, map->left);
+        tmp = ft_find_struct(head->x, head->y - 1, head);
+        tmp == NULL ? map->down = NULL : ft_read_to_map(tmp, map->down);
+    } 
 }
 
 t_read *ft_find_struct(int x, int y, t_read *head)
