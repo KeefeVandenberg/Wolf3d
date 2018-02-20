@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/15 18:54:19 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/20 09:57:41 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ typedef struct      s_map
     int             y;
     int             height;
 }                   t_map;
+
+typedef struct      s_env
+{
+    int             **map;
+}
 
 #endif
