@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/20 09:57:41 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:55:37 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,11 @@ typedef struct      s_read
     int             height;
 }                   t_read;
 
-typedef struct      s_map
-{
-    struct s_map    *right;
-    struct s_map    *left;
-    struct s_map    *up;
-    struct s_map    *down;
-    int             x;
-    int             y;
-    int             height;
-}                   t_map;
-
 typedef struct      s_env
 {
     int             **map;
-}
+    int             x_max;
+    int             y_max;
+}                   t_env;
 
 #endif
