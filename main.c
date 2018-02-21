@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/20 18:05:24 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/20 19:54:58 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,18 @@ int *fill_line(t_read *head, t_env *map)
     while (i != map->x_max)
     {
         str[i] = current->height;
+        //printf("%d\n", current->height);
         current = current->next;
         i++;
     }
     return (str);
 }
 
+/*
+//I think I am going to need to scrap the parse function, at least a bit and then
+//remake it so it doesnt even make a read and just creates an int array right off
+//the bat but I do not know at the moment.
+*/
 int ft_mapper(t_read *head, t_env *map)
 {
     t_env *e;
@@ -56,10 +62,8 @@ int ft_mapper(t_read *head, t_env *map)
     e = map;
     struct_len(head, e);
     e->map = (int **)malloc(sizeof(int *) * e->y_max);
-    printf("x max = %d\n", e->x_max);
     while(index != e->x_max + 1)
     {
-        printf("Index is %d\n", index);
         e->map[index] = fill_line(head, map);
         index++;
     }
@@ -95,6 +99,7 @@ int parse(t_read *current, char *str, int y, int x)
     new->x = x;
     new->y = y;
     new->height = atoi(str);
+    printf("%c\n", str[0]);
     last = new;
     new = new->next;
     new->next = NULL;
@@ -113,7 +118,7 @@ int init_parse(t_read *current, char *str, int y)
     {
         if (ft_isdigit(str[i]))
             parse(current, str, y, x++);
-        i++;
+        str++;
     }
     return (1);
 }
