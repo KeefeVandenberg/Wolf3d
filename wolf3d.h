@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/20 17:55:37 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/21 18:13:48 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define WOLF3D_H
 # define WIDTH 800
 # define HEIGHT 800
+# define EyeHeight 6
 
 # include <time.h>
 # include <stdio.h>
@@ -26,14 +27,12 @@
 # include <fcntl.h>
 # include "math.h"
 
-typedef struct      s_read
+typedef struct      s_player
 {
-    struct s_read          *next;
-    struct s_read          *last;
-    int             x;
-    int             y;
-    int             height;
-}                   t_read;
+    double          x;
+    double          y;
+    double          viewangle;
+}                   t_player;
 
 typedef struct      s_env
 {
@@ -41,5 +40,10 @@ typedef struct      s_env
     int             x_max;
     int             y_max;
 }                   t_env;
+
+int                 ft_initread(char *str, t_env *all);
+int                 ft_reopen(char *str, int y, t_env *all);
+int                 ft_countnum(char *str);
+int                 *parse(char *str, int x);
 
 #endif
