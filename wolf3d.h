@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/21 18:13:48 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/24 17:56:14 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define WIDTH 800
 # define HEIGHT 800
 # define EyeHeight 6
+# define FLOOR 0xCCCCCC //grey
+# define ROOF 0x7b7FFF //light blue
+# define NORTH 0xFF7B7B // pinkish
+# define WEST 0x7BFF7F // light green
+# define SOUTH 0xBD7BFF // light purple
+# define EAST 0x000b7E // deep blue
 
 # include <time.h>
 # include <stdio.h>
@@ -36,6 +42,7 @@ typedef struct      s_player
 
 typedef struct      s_env
 {
+    t_player        *player;
     int             **map;
     int             x_max;
     int             y_max;
