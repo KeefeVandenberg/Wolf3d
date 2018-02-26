@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/21 17:58:07 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/25 18:13:54 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int *parse(char *str, int x)
     {
         if(ft_isdigit(str[i]))
         {
-            printf("%d ", ft_atoi(str));
             intarr[i_int] = ft_atoi(str);
             i_int++;
         }
@@ -68,7 +67,7 @@ int ft_reopen(char *str, int y, t_env *all)
         x = ft_countnum(line);
         current->map[index] = parse(line, x);
         line = NULL;
-        printf("\n");
+        index++;
     }
     close(fd);
     return (0);
@@ -91,6 +90,7 @@ int ft_initread(char *str, t_env *all)
         line = 0;
         y++;
     }
+    current->y_max = y;
     close(fd);
     ft_reopen(str, y, current);
     return (0);

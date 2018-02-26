@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/24 17:56:14 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/25 19:33:20 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define WEST 0x7BFF7F // light green
 # define SOUTH 0xBD7BFF // light purple
 # define EAST 0x000b7E // deep blue
+# define distance(x1, y1, x2, y2) sqrt((pow(x2 - x1, 2)) + (pow(y2 - y1, 2)))
 
 # include <time.h>
 # include <stdio.h>
@@ -33,6 +34,17 @@
 # include <fcntl.h>
 # include "math.h"
 
+typedef struct      s_mlx
+{
+    void            *mlx;
+    void            *image;
+    void            *image_ptr;
+    void            *window;
+    int             endian;
+    int             sl;
+    int             bpp;
+}                   t_mlx;
+
 typedef struct      s_player
 {
     double          x;
@@ -40,17 +52,43 @@ typedef struct      s_player
     double          viewangle;
 }                   t_player;
 
+typedef struct      s_ray
+{
+    double          planeX;
+    double          planeY;
+    double          posX;
+    double          posY;
+    double          sideDistX;
+    double          sideDistY;
+    double          dirX;
+    double          dirY;
+    double          cameraX;
+    double          rayDirX;
+    double          rayDirY;
+    double          deltaDistX;
+    double          deltaDistY;
+    double          perpWallDist;
+    int             stepX;
+    int             stepY;
+    int             side;
+    int             hit;
+}                   t_ray;
+
 typedef struct      s_env
 {
     t_player        *player;
+    t_ray           *ray;
+    t_mlx           *mlx;
     int             **map;
     int             x_max;
-    int             y_max;
+    int             y_max;    
 }                   t_env;
 
 int                 ft_initread(char *str, t_env *all);
 int                 ft_reopen(char *str, int y, t_env *all);
 int                 ft_countnum(char *str);
 int                 *parse(char *str, int x);
+int                 draw(t_env *all); 
+void                draw_vert(int x, int start, int end, int color, t_env *all);
 
 #endif

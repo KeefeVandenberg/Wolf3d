@@ -6,7 +6,7 @@
 #    By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/12 18:14:56 by kvandenb          #+#    #+#              #
-#    Updated: 2018/02/21 17:57:44 by kvandenb         ###   ########.fr        #
+#    Updated: 2018/02/25 19:32:53 by kvandenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ header = wolf3d.h
 
 includes = ./GNL/libft/libft.a ./GNL/get_next_line.c ./minilibx_macos/libmlx.a
 
-SRC = main.c open_map.c
+SRC = main.c open_map.c draw.c utils.c
 
 OBJ = *.o
 
