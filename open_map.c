@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/25 18:13:54 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/27 15:50:35 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ int *parse(char *str, int x)
 
     i = 0;
     i_int = 0;
-    intarr = (int *)malloc(sizeof(int) * x);
+    if(!(intarr = (int *)malloc(sizeof(int) * x)))
+    {
+        ft_putendl("Single array failed to malloc");
+        exit(1);
+    }
     while (str[i] && i_int != x + 1)
     {
         if(ft_isdigit(str[i]))
@@ -61,7 +65,11 @@ int ft_reopen(char *str, int y, t_env *all)
     current = all;
     line = 0;
     index = 0;
-    current->map = (int **)malloc(sizeof(int) * y);
+    if(!(current->map = (int **)malloc(sizeof(int) * y)))
+    {
+        ft_putendl("Map failed to malloc");
+        exit(1);
+    }
     while (get_next_line(fd, &line) != 0)
     {
         x = ft_countnum(line);
@@ -69,6 +77,7 @@ int ft_reopen(char *str, int y, t_env *all)
         line = NULL;
         index++;
     }
+    current->map[index] = NULL;
     close(fd);
     return (0);
 }

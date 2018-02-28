@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/25 19:33:20 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/27 18:05:55 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct      s_ray
     double          planeY;
     double          posX;
     double          posY;
+    int             mapX;
+    int             mapY;
     double          sideDistX;
     double          sideDistY;
     double          dirX;
@@ -72,6 +74,12 @@ typedef struct      s_ray
     int             stepY;
     int             side;
     int             hit;
+    double          time;
+    double          oldTime;
+    int             lineHeight;
+    int             drawStart;
+    int             drawEnd;
+    int             color;
 }                   t_ray;
 
 typedef struct      s_env
@@ -90,5 +98,6 @@ int                 ft_countnum(char *str);
 int                 *parse(char *str, int x);
 int                 draw(t_env *all); 
 void                draw_vert(int x, int start, int end, int color, t_env *all);
+void                ft_exit(t_env *all);
 
 #endif

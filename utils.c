@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/25 19:59:36 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/27 12:13:03 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void		pixel_put_img(t_env *j, int x, int y, int color)
 	if (x < WIDTH && y < HEIGHT)
 	{
 		hex = mlx_get_color_value(e->mlx->mlx, color);
-		ft_memcpy(e->mlx->image_ptr + 4 * WIDTH * y + x * 4, &hex, sizeof(int));
+		ft_memcpy(e->mlx->image_ptr + 4 * WIDTH * y + x * 4, &color, sizeof(int));
 	}
 }
 
 void    draw_vert(int x, int start, int end, int color, t_env *all)
 {
+    //printf("start = %d\nEnd = %d\n", start, end);
     if(start < end)
     {
         while(start != end)
