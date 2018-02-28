@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/27 16:44:45 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/27 19:51:46 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,14 @@ int keydown(int keycode, t_env *all)
     t_env *e;
 
     e = all;
-    printf("%d", keycode);
+    printf("%d\n", keycode);
     if (keycode == 53)
         exit(1);
+    if (keycode == 13)
+    {
+        if (e->map[(int)e->ray->posX + e->ray->dirX *e][int(posY)] == 0)
+            
+    }
     return (0);
 }
 
