@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/27 19:51:46 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/28 21:06:18 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ t_ray *init_ray(void)
         ft_putendl("Ray wasn't initated correctly");
         exit(1);
     }
-    e->dirX = -1;
-    e->dirY = 0;
+    e->dirX = -1.0;
+    e->dirY = 0.0;
     e->planeX = 0;
-    e->planeY = .66;
-    e->time = 0;
-    e->oldTime = 0;
+    e->planeY = 2 * (atan(0.90/1.0));
     return (e);
 }
 
@@ -88,9 +86,28 @@ int keydown(int keycode, t_env *all)
         exit(1);
     if (keycode == 13)
     {
-        if (e->map[(int)e->ray->posX + e->ray->dirX *e][int(posY)] == 0)
-            
+        if (e->map[(int)(e->ray->posX + e->ray->dirX * 0.06)][(int)(e->ray->posY)] == 0)
+            e->ray->posX += e->ray->dirX * 0.06;
+        if (e->map[(int)e->ray->posX][(int)(e->ray->posY + e->ray->dirY * 0.06)] == 0)
+            e->ray->posY += e->ray->dirY * 0.06;
     }
+    else if (keycode == 1)
+    {
+        if (e->map[(int)(e->ray->posX - e->ray->dirX * 0.06)][(int)(e->ray->posY)] == 0)
+            e->ray->posX -= e->ray->dirX * 0.06;
+        if (e->map[(int)e->ray->posX][(int)(e->ray->posY - e->ray->dirY * 0.06)] == 0)
+            e->ray->posY -= e->ray->dirY * 0.06;
+    }
+    else if (keycode == 0)
+    {
+        e->ray->oldDirX = e->ray->dirX;
+        e->ray->dirX = e->ray->dirX * cos(-.04) - e->ray->dirY * sin(-.04);
+        e->ray->dirY = e->ray->oldDirX * sin(-.04) + e->ray->dirY * cos(-.04);
+        e->ray->oldPlaneX = e->ray->planeX;
+        e->ray->planeX = e->ray->planeX * cos(-.04) - e->ray->planeY * sin(-.04);
+        e->ray->planeY = e->ray->oldPlaneX * sin(-0.04) + e->ray->planeY * cos(-.04);
+    }
+    draw(e);
     return (0);
 }
 
@@ -109,13 +126,14 @@ int main(int argc, char **argv)
 
     e = init_env();
     init(e);
-    if (argc == 2)
+    if (argc != 2)
     {
-        ft_initread(argv[1], e);
-        draw(e);
-        printf("finished drawing\n");
-        mlx_hook(e->mlx->window, 2, 0, keydown, e);
-        mlx_loop(e->mlx->mlx);
-    }
+        exit(1);
+    }   
+    ft_initread(argv[1], e);
+    draw(e);
+    printf("finished drawing\n");
+    mlx_hook(e->mlx->window, 2, 0, keydown, e);
+    mlx_loop(e->mlx->mlx);
     return (0);
 }

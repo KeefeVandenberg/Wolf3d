@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/27 18:05:55 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/28 20:21:05 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct      s_ray
     double          sideDistY;
     double          dirX;
     double          dirY;
+    double          oldDirX;
+    double          oldPlaneX;
     double          cameraX;
     double          rayDirX;
     double          rayDirY;
@@ -80,6 +82,7 @@ typedef struct      s_ray
     int             drawStart;
     int             drawEnd;
     int             color;
+    double          frameTime;
 }                   t_ray;
 
 typedef struct      s_env

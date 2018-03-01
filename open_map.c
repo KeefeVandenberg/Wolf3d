@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/27 15:50:35 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:26:24 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int ft_reopen(char *str, int y, t_env *all)
         index++;
     }
     current->map[index] = NULL;
+    current->x_max = x;
     close(fd);
     return (0);
 }

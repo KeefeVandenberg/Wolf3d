@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 16:36:26 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/01/29 15:09:57 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/26 17:56:44 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	void	*temp_s1;
+	size_t	i;
 
-	temp_s1 = s1;
-	while (n--)
-		*(unsigned char *)s1++ = *(unsigned char *)s2++;
-	return (temp_s1);
+	i = 0;
+	while (i < n)
+	{
+		((char *) s1)[i] = ((char *) s2)[i];
+		i++;
+	}
+	return (s1);
 }

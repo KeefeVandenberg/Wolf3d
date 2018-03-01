@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/27 18:05:34 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/02/28 22:13:21 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,7 @@ void draw_all(t_env *all)
     int x;
 
     current = all;
-    ray = malloc(sizeof(t_ray));
-    ray->posX = 5;
-    ray->posY = 5;
-    ray->dirX = -1.0;
-    ray->dirY = 0.0;
-    ray->planeX = 0;
-    ray->planeY = .66;
+    ray = current->ray;
     x = -1;
     while (x++ != WIDTH)
     {
@@ -69,7 +63,12 @@ void draw_all(t_env *all)
             {
                 ray->sideDistY += ray->deltaDistY;
                 ray->mapY += ray->stepY;
-                ray->side = 0;
+                ray->side = 1;
+            }
+            if (current->x_max < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || current->y_max < ray->mapY)
+            {
+                ray->hit = 1;
+                break;
             }
             if (current->map[ray->mapX][ray->mapY] > 0)
                 ray->hit = 1;
@@ -86,20 +85,37 @@ void draw_all(t_env *all)
         ray->drawEnd = ray->lineHeight / 2 + HEIGHT / 2;
         if (ray->drawEnd >= HEIGHT)
             ray->drawEnd = HEIGHT - 1;
-        ray->color = ROOF;
-        if (ray->side == 1)
-            ray->color = ray->color / 2;
+        ray->color = SOUTH;
         draw_vert(x, ray->drawStart, ray->drawEnd, ray->color, current);
+    }
+}
+
+void    ft_sky(t_env *all)
+{
+    int x;
+    int roof;
+    int y;
+    int ground;
+    t_env *current;
+
+    ground = FLOOR;
+    roof = ROOF;
+    x = 0;
+    current = all;
+    while (x != WIDTH)
+    {
+        draw_vert(x, HEIGHT / 2, HEIGHT, roof, current);
+        draw_vert(x, 0, HEIGHT / 2, ground, current);
+        x++;
     }
 }
 
 int draw(t_env *all)
 {
     t_env *current;
-    int x_tmp;
 
-    x_tmp = 1;
     current = all;
+    ft_sky(current);
     draw_all(current);
     mlx_clear_window(current->mlx->mlx, current->mlx->window);
     mlx_put_image_to_window(current->mlx->mlx, current->mlx->window, current->mlx->image, 0, 0);
