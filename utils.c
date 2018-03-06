@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/28 20:36:01 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/05 18:16:35 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		pixel_put_img(t_env *j, int x, int y, int color)
 
 void    draw_vert(int x, int start, int end, int color, t_env *all)
 {
-    printf("start = %d\nEnd = %d\n", start, end);
+    //printf("start = %d\nEnd = %d\n", start, end);
     if(start < end)
     {
         while(start != end)
