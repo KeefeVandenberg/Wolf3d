@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/28 22:13:21 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/06 10:02:52 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void draw_all(t_env *all)
                 ray->mapY += ray->stepY;
                 ray->side = 1;
             }
-            if (current->x_max < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || current->y_max < ray->mapY)
+            if (WIDTH_MAP < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || HEIGHT_MAP < ray->mapY)
             {
                 ray->hit = 1;
                 break;
@@ -77,7 +77,7 @@ void draw_all(t_env *all)
             ray->perpWallDist = (ray->mapX - ray->posX + (1 - ray->stepX) / 2) / ray->rayDirX;
         else
             ray->perpWallDist = (ray->mapY - ray->posY + (1 - ray->stepY) / 2) / ray->rayDirY;
-        printf("mapY = %d posY = %f stepy = %d rayDirY = %f\n", ray->mapY, ray->posY, ray->stepY, ray->rayDirY);
+        //printf("mapY = %d posY = %f stepy = %d rayDirY = %f\n", ray->mapY, ray->posY, ray->stepY, ray->rayDirY);
         ray->lineHeight = (int)(HEIGHT / ray->perpWallDist);
         ray->drawStart = -ray->lineHeight / 2 + HEIGHT / 2;
         if (ray->drawStart < 0)

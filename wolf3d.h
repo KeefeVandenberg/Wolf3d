@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/02/28 20:21:05 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/06 09:54:26 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define WOLF3D_H
 # define WIDTH 800
 # define HEIGHT 800
-# define EyeHeight 6
+# define HEIGHT_MAP 18
+# define WIDTH_MAP 20
 # define FLOOR 0xCCCCCC //grey
 # define ROOF 0x7b7FFF //light blue
 # define NORTH 0xFF7B7B // pinkish
@@ -90,9 +91,7 @@ typedef struct      s_env
     t_player        *player;
     t_ray           *ray;
     t_mlx           *mlx;
-    int             **map;
-    int             x_max;
-    int             y_max;    
+    int             **map;   
 }                   t_env;
 
 int                 ft_initread(char *str, t_env *all);
