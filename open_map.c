@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/06 11:30:10 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/06 16:01:33 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int *parse(char *str, int x)
     {
         if (ft_isdigit(str[i]) && k != x)
         {
-            arr[k] = ft_atoi(&str[i]);
+            arr[k] = str[i] - 48;
             k++;
         }
         i++;
@@ -49,11 +49,11 @@ int ft_initread(char *str, t_env *all)
         ft_putendl("Not valid file");
         exit(1);
     }
-    //current->map = (int **)malloc(sizeof(int) * HEIGHT_MAP);
+    current->map = (int **)malloc(sizeof(int) * HEIGHT_MAP);
     while (get_next_line(fd, &line) == 1)
     {
-        //current->map[index] = parse(line, WIDTH_MAP);
-        printf("%s\n", line);
+        current->map[index] = parse(line, WIDTH_MAP);
+        //printf("%s\n", line);
         free(line);
         index++;
     }

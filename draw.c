@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/06 10:02:52 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/06 15:39:37 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void draw_all(t_env *all)
                 ray->mapY += ray->stepY;
                 ray->side = 1;
             }
-            if (WIDTH_MAP < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || HEIGHT_MAP < ray->mapY)
-            {
-                ray->hit = 1;
-                break;
-            }
+            //if (WIDTH_MAP < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || HEIGHT_MAP < ray->mapY)
+            //{
+            //    ray->hit = 1;
+            //    break;
+            //}
             if (current->map[ray->mapX][ray->mapY] > 0)
                 ray->hit = 1;
         }
