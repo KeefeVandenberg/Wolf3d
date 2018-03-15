@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/06 09:54:26 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/14 15:21:41 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define WIDTH 800
 # define HEIGHT 800
 # define HEIGHT_MAP 18
-# define WIDTH_MAP 20
+# define WIDTH_MAP 18
 # define FLOOR 0xCCCCCC //grey
 # define ROOF 0x7b7FFF //light blue
 # define NORTH 0xFF7B7B // pinkish
@@ -90,7 +90,7 @@ typedef struct      s_env
 {
     t_player        *player;
     t_ray           *ray;
-    t_mlx           *mlx;
+    t_mlx           *t_mlx;
     int             **map;   
 }                   t_env;
 
