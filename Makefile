@@ -6,13 +6,13 @@
 #    By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/12 18:14:56 by kvandenb          #+#    #+#              #
-#    Updated: 2018/02/27 18:06:00 by kvandenb         ###   ########.fr        #
+#    Updated: 2018/03/06 18:26:35 by kvandenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 libx_flags = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
 
-cflags = -Wall -Wextra -Werror -lpthread
+cflags = -Wall -Wextra -Werror -lpthread -fsanitize=address
 
 make_libft = @make -C ./GNL/libft/
 
