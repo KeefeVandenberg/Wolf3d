@@ -6,13 +6,13 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/06 15:38:35 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/14 20:50:56 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_ray *init_ray(void)
+static t_ray *init_ray(void)
 {
     t_ray *e;
 
@@ -28,7 +28,7 @@ t_ray *init_ray(void)
     return (e);
 }
 
-t_env *init_env(void)
+static t_env *init_env(void)
 {
     t_env *e;
 
@@ -36,13 +36,13 @@ t_env *init_env(void)
         exit(1);
     if (!(e->player = malloc(sizeof(t_player))))
         exit(1);
-    if (!(e->mlx = malloc(sizeof(t_mlx))))
+    if (!(e->t_mlx = malloc(sizeof(t_mlx))))
         exit(1);
-    if ((e->mlx->mlx = mlx_init()) == NULL || (e->mlx->window = mlx_new_window(e->mlx->mlx, WIDTH, HEIGHT, "Wolf3d ~ kvandenb")) == NULL)
+    if ((e->t_mlx->mlx = mlx_init()) == NULL)
         exit(1);
-    if ((e->mlx->image = mlx_new_image(e->mlx->mlx, WIDTH, HEIGHT)) == NULL)
-        exit(1);
-    e->mlx->image_ptr = mlx_get_data_addr(e->mlx->image, &(e->mlx->bpp), &(e->mlx->sl), &(e->mlx->endian));
+    e->t_mlx->window = mlx_new_window(e->t_mlx->mlx, WIDTH, HEIGHT, "Wolf3d ~ kvandenb");
+    e->t_mlx->image = mlx_new_image(e->t_mlx->mlx, WIDTH, HEIGHT);
+    e->t_mlx->image_ptr = mlx_get_data_addr(e->t_mlx->image, &(e->t_mlx->bpp), &(e->t_mlx->sl), &(e->t_mlx->endian));
     e->ray = init_ray();
     e->player->x = 5;
     e->player->y = 5;
@@ -58,7 +58,7 @@ void    ft_exit(t_env *all)
     e = all;
     free(e->player);
     free(e->ray);
-    free(e->mlx);
+    free(e->t_mlx);
     free(e->map);
     free(e);
     exit(1);
@@ -74,16 +74,16 @@ int keydown(int keycode, t_env *all)
         exit(1);
     if (keycode == 13)
     {
-        if (e->map[(int)(e->ray->posX + e->ray->dirX * 0.06)][(int)(e->ray->posY)] == 0)
+        if (e->map[(int)(e->ray->posY)][(int)(e->ray->posX + e->ray->dirX * 0.06)] == 0)
             e->ray->posX += e->ray->dirX * 0.06;
-        if (e->map[(int)e->ray->posX][(int)(e->ray->posY + e->ray->dirY * 0.06)] == 0)
+        if (e->map[(int)(e->ray->posY + e->ray->dirY * 0.06)][(int)e->ray->posX] == 0)
             e->ray->posY += e->ray->dirY * 0.06;
     }
     else if (keycode == 1)
     {
-        if (e->map[(int)(e->ray->posX - e->ray->dirX * 0.06)][(int)(e->ray->posY)] == 0)
+        if (e->map[(int)(e->ray->posY)][(int)(e->ray->posX - e->ray->dirX * 0.06)] == 0)
             e->ray->posX -= e->ray->dirX * 0.06;
-        if (e->map[(int)e->ray->posX][(int)(e->ray->posY - e->ray->dirY * 0.06)] == 0)
+        if (e->map[(int)(e->ray->posY - e->ray->dirY * 0.06)][(int)e->ray->posX] == 0)
             e->ray->posY -= e->ray->dirY * 0.06;
     }
     else if (keycode == 2)
@@ -141,9 +141,8 @@ int main(int argc, char **argv)
     ft_initread(argv[1], e);
     ft_printmap(e);
     draw(e);
-    mlx_hook(e->mlx->window, 2, 0, keydown, e);
-    mlx_loop(e->mlx->mlx);
+    mlx_hook(e->t_mlx->window, 2, 0, keydown, e);
+    //mlx_hook(e->t_mlx->window, 17, 0, exit_hook, e);
+    mlx_loop(e->t_mlx->mlx);
     return (0);
 }
-
-//I need to rewrite the parse function from the ground up it is fucking up badly

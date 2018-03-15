@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/06 15:39:37 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/14 20:48:18 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void draw_all(t_env *all)
                 ray->mapY += ray->stepY;
                 ray->side = 1;
             }
-            //if (WIDTH_MAP < ray->mapX || ray->mapX < 0 || ray->mapY < 0 || HEIGHT_MAP < ray->mapY)
-            //{
-            //    ray->hit = 1;
-            //    break;
-            //}
-            if (current->map[ray->mapX][ray->mapY] > 0)
+            if (WIDTH_MAP <= ray->mapX || ray->mapX <= 0 || ray->mapY <= 0 || HEIGHT_MAP < ray->mapY)
+            {
+                ray->hit = 1;
+                break;
+            }
+            if (current->map[ray->mapY][ray->mapX] != 0)
                 ray->hit = 1;
         }
         if (ray->side == 0)
@@ -115,9 +115,9 @@ int draw(t_env *all)
     t_env *current;
 
     current = all;
+    mlx_clear_window(current->t_mlx->mlx, current->t_mlx->window);
     ft_sky(current);
     draw_all(current);
-    mlx_clear_window(current->mlx->mlx, current->mlx->window);
-    mlx_put_image_to_window(current->mlx->mlx, current->mlx->window, current->mlx->image, 0, 0);
+    //mlx_put_image_to_window(current->t_mlx->mlx, current->t_mlx->window, current->t_mlx->image, 0, 0);
     return (1);
 }

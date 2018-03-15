@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/05 18:16:35 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/14 20:47:48 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		pixel_put_img(t_env *j, int x, int y, int color)
 	e = j;
 	if (x < WIDTH && y < HEIGHT)
 	{
-		hex = mlx_get_color_value(e->mlx->mlx, color);
-		ft_memcpy(e->mlx->image_ptr + 4 * WIDTH * y + x * 4, &color, sizeof(int));
+		hex = mlx_get_color_value(e->t_mlx->mlx, color);
+		ft_memcpy(e->t_mlx->image_ptr + 4 * WIDTH * y + x * 4, &color, sizeof(int));
 	}
 }
 
@@ -32,7 +32,8 @@ void    draw_vert(int x, int start, int end, int color, t_env *all)
     {
         while(start != end)
         {
-            pixel_put_img(all, x, start, color);
+            //pixel_put_img(all, x, start, color);
+            mlx_pixel_put(all->t_mlx->mlx, all->t_mlx->window, x, start, color);
             start++;
         }
     }
@@ -40,7 +41,8 @@ void    draw_vert(int x, int start, int end, int color, t_env *all)
     {
         while(start != end)
         {
-            pixel_put_img(all, x, start, color);
+            //pixel_put_img(all, x, start, color);
+            mlx_pixel_put(all->t_mlx->mlx, all->t_mlx->window, x, start, color);
             start--;
         }
     }
