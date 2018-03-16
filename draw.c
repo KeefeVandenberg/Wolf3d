@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/14 20:48:18 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/15 17:43:49 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,56 @@ void    ft_sky(t_env *all)
     }
 }
 
+void draw_cube(int x, int y, t_env *all)
+{
+    int px;
+    int py;
+
+    px = x * 5;
+    py = y * 5;
+
+    while (px != (x * 5) + 5)
+    {
+        draw_vert(px, py, py + 5, 0x4C4C4C, all);
+        px++;
+    }
+}
+
+void ft_drawplayer(t_env *current)
+{
+    int i;
+
+    i = 0;
+    while (i != 3)
+    {
+        draw_vert(((current->ray->posX + 1) * 5) + i, (current->ray->posY + 1) * 5, ((current->ray->posY + 1) * 5) + 3, 0xFF0000, current);
+        i++;
+    }
+}
+
+void mini_map(t_env *current)
+{
+    int x;
+    int y;
+
+    x = 0;
+    y = 0;
+    while (y != HEIGHT_MAP)
+    {
+        x = 0;
+        while (x != WIDTH_MAP)
+        {
+            if (current->map[y][x] == 1)
+            {
+                draw_cube(x + 1, y + 1, current);
+            }
+            x++;
+        }
+        y++;
+    }
+    ft_drawplayer(current);
+}
+
 int draw(t_env *all)
 {
     t_env *current;
@@ -118,6 +168,7 @@ int draw(t_env *all)
     mlx_clear_window(current->t_mlx->mlx, current->t_mlx->window);
     ft_sky(current);
     draw_all(current);
-    //mlx_put_image_to_window(current->t_mlx->mlx, current->t_mlx->window, current->t_mlx->image, 0, 0);
+    mini_map(current);
+    mlx_put_image_to_window(current->t_mlx->mlx, current->t_mlx->window, current->t_mlx->image, 0, 0);
     return (1);
 }
