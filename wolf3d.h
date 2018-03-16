@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/14 15:21:41 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/15 20:08:17 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,20 @@ typedef struct      s_ray
     double          frameTime;
 }                   t_ray;
 
+typedef struct      s_events
+{
+    int             w;
+    int             a;
+    int             s;
+    int             d;
+}                   t_events;
+
 typedef struct      s_env
 {
     t_player        *player;
     t_ray           *ray;
     t_mlx           *t_mlx;
+    t_events        *events;
     int             **map;   
 }                   t_env;
 

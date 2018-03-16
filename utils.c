@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/14 20:47:48 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/15 17:48:47 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ void		pixel_put_img(t_env *j, int x, int y, int color)
 
 void    draw_vert(int x, int start, int end, int color, t_env *all)
 {
-    //printf("start = %d\nEnd = %d\n", start, end);
     if(start < end)
     {
         while(start != end)
         {
-            //pixel_put_img(all, x, start, color);
-            mlx_pixel_put(all->t_mlx->mlx, all->t_mlx->window, x, start, color);
+            pixel_put_img(all, x, start, color);
             start++;
         }
     }
@@ -41,8 +39,7 @@ void    draw_vert(int x, int start, int end, int color, t_env *all)
     {
         while(start != end)
         {
-            //pixel_put_img(all, x, start, color);
-            mlx_pixel_put(all->t_mlx->mlx, all->t_mlx->window, x, start, color);
+            pixel_put_img(all, x, start, color);
             start--;
         }
     }

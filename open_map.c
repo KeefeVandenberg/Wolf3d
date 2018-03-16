@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/14 21:13:46 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/15 18:43:58 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,30 @@ int *parse(char *str, int x)
     {
         if (ft_isdigit(*str) && k != x)
         {
-            arr[k] = str[0] - '0';
+            if (k == 0 || k == x)
+                arr[k] = 1;
+            else
+                arr[k] = str[0] - '0';
             k++;
         }
         str++;
     }
     return (arr);
+}
+
+int *surround(char *str, int size)
+{
+    int *i_str;
+    int k;
+
+    k = 0;
+    i_str = (int *)malloc(sizeof(int) * size);
+    while (k != size)
+    {
+        i_str[k] = 1;
+        k++;
+    }
+    return (i_str);
 }
 
 int ft_initread(char *str, t_env *all)
@@ -54,12 +72,14 @@ int ft_initread(char *str, t_env *all)
     {
         buf[37] = '\0';
         printf("%s", buf);
-        current->map[index] = parse(buf, WIDTH_MAP);
+        if (index == 0 || index == HEIGHT_MAP)
+            current->map[index] = surround(buf, WIDTH_MAP);
+        else
+            current->map[index] = parse(buf, WIDTH_MAP);
         ft_bzero(buf, 42);
         index++;
     }
     printf("\n\n");
-    current->map[index] = NULL;
     close(fd);
     return (0);
 }
