@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:41:51 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/19 21:12:05 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:08:39 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ray		*init_ray(void)
 	e->dirX = -1.0;
 	e->dirY = 0.0;
 	e->planeX = 0;
-	e->planeY = 2 * (atan(.45/1.0));
+	e->planeY = 2 * (atan(.45 / 1.0));
 	return (e);
 }
 
@@ -65,9 +65,11 @@ t_env		*init_env(void)
 		ft_exit(e);
 	if ((e->t_mlx->mlx = mlx_init()) == NULL)
 		ft_exit(e);
-	e->t_mlx->window = mlx_new_window(e->t_mlx->mlx, WIDTH, HEIGHT, "Wolf3d ~ kvandenb");
+	e->t_mlx->window = mlx_new_window(e->t_mlx->mlx,
+		WIDTH, HEIGHT, "Wolf3d ~ kvandenb");
 	e->t_mlx->image = mlx_new_image(e->t_mlx->mlx, WIDTH, HEIGHT);
-	e->t_mlx->image_ptr = mlx_get_data_addr(e->t_mlx->image, &(e->t_mlx->bpp), &(e->t_mlx->sl), &(e->t_mlx->endian));
+	e->t_mlx->image_ptr = mlx_get_data_addr(e->t_mlx->image,
+		&(e->t_mlx->bpp), &(e->t_mlx->sl), &(e->t_mlx->endian));
 	e->ray = init_ray();
 	e->events = init_events();
 	e->player->x = 5;
