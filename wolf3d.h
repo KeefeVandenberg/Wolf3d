@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/15 20:08:17 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:12:09 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
 # define HEIGHT 800
 # define HEIGHT_MAP 18
 # define WIDTH_MAP 18
-# define FLOOR 0xCCCCCC //grey
-# define ROOF 0x7b7FFF //light blue
-# define NORTH 0xFF7B7B // pinkish
-# define WEST 0x7BFF7F // light green
-# define SOUTH 0xBD7BFF // light purple
-# define EAST 0x000b7E // deep blue
+# define FLOOR 0xCCCCCC
+# define ROOF 0x7b7FFF
+# define RED 0xff5050
+# define RED2 0xff5252
+# define ORANGE 0xffa852
+# define ORANGE2 0xff7d52
+# define GREEN 0x009900
+# define GREEN2 0x33cc33
+# define BLUE 0x3380cc
+# define BLUE2 0x3333cc
+# define PURPLE 0x8033cc
+# define PURPLE2 0xa633cc
 # define distance(x1, y1, x2, y2) sqrt((pow(x2 - x1, 2)) + (pow(y2 - y1, 2)))
 
 # include <time.h>
@@ -92,6 +98,7 @@ typedef struct      s_events
     int             a;
     int             s;
     int             d;
+    int             crouch_offset;
 }                   t_events;
 
 typedef struct      s_env
@@ -103,12 +110,13 @@ typedef struct      s_env
     int             **map;   
 }                   t_env;
 
-int                 ft_initread(char *str, t_env *all);
-int                 ft_reopen(char *str, int y, t_env *all);
-int                 ft_countnum(char *str);
-int                 *parse(char *str, int x);
-int                 draw(t_env *all); 
+int                 keydown_after(t_env *all);
+t_env               *init_env(void);
+void                mini_map(t_env *current);
+int                 draw(t_env *current);
+void		        ft_exit(t_env *e);
+int                 keydown_after(t_env *all);
 void                draw_vert(int x, int start, int end, int color, t_env *all);
-void                ft_exit(t_env *all);
+int                 ft_initread(char *str, t_env *all);
 
 #endif

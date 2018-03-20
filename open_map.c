@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/15 18:43:58 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/19 20:40:50 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ int ft_initread(char *str, t_env *all)
     ft_bzero(buf, 42);
     if (!(fd = open(str, O_RDONLY)))
     {
-        ft_putendl("Not valid file");
         exit(1);
     }
-    current->map = (int **)malloc(sizeof(int *) * HEIGHT_MAP);
+    current->map = (int **)malloc(sizeof(int **) * HEIGHT_MAP);
     while (0 < (read(fd, &buf, 36)))
     {
         buf[37] = '\0';

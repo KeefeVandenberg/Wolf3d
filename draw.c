@@ -6,11 +6,34 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/15 17:43:49 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/19 20:14:45 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int color_picker(t_env *current)
+{
+    t_ray *ray;
+    int i;
+
+    ray = current->ray;
+    i = current->map[ray->mapY][ray->mapX];
+    if (i > 5)
+        i = i % 5;
+    if (i == 1)
+        ray->color = ray->side == 1 ? PURPLE : PURPLE2;
+    else if (i == 2)
+        ray->color = ray->side == 1 ? ORANGE : ORANGE2;
+    else if (i == 3)
+        ray->color = ray->side == 1 ? GREEN2 : GREEN;
+    else if (i == 4)
+        ray->color = ray->side == 1 ? BLUE : BLUE2;
+    else if (i == 5)
+        ray->color = ray->side == 1 ? PURPLE : PURPLE2;
+    i = 0;
+    return (0);
+}
 
 void draw_all(t_env *all)
 {
@@ -21,6 +44,8 @@ void draw_all(t_env *all)
     current = all;
     ray = current->ray;
     x = -1;
+    ray->oldTime = 0;
+    ray->time = 0;
     while (x++ != WIDTH)
     {
         ray->cameraX = 2 * x / (double)(WIDTH) - 1;
@@ -85,7 +110,7 @@ void draw_all(t_env *all)
         ray->drawEnd = ray->lineHeight / 2 + HEIGHT / 2;
         if (ray->drawEnd >= HEIGHT)
             ray->drawEnd = HEIGHT - 1;
-        ray->color = SOUTH;
+        color_picker(current);
         draw_vert(x, ray->drawStart, ray->drawEnd, ray->color, current);
     }
 }
@@ -104,67 +129,14 @@ void    ft_sky(t_env *all)
     current = all;
     while (x != WIDTH)
     {
-        draw_vert(x, HEIGHT / 2, HEIGHT, roof, current);
-        draw_vert(x, 0, HEIGHT / 2, ground, current);
+        draw_vert(x, HEIGHT / 2, HEIGHT, ground, current);
+        draw_vert(x, 0, HEIGHT / 2, roof, current);
         x++;
     }
 }
 
-void draw_cube(int x, int y, t_env *all)
+int draw(t_env *current)
 {
-    int px;
-    int py;
-
-    px = x * 5;
-    py = y * 5;
-
-    while (px != (x * 5) + 5)
-    {
-        draw_vert(px, py, py + 5, 0x4C4C4C, all);
-        px++;
-    }
-}
-
-void ft_drawplayer(t_env *current)
-{
-    int i;
-
-    i = 0;
-    while (i != 3)
-    {
-        draw_vert(((current->ray->posX + 1) * 5) + i, (current->ray->posY + 1) * 5, ((current->ray->posY + 1) * 5) + 3, 0xFF0000, current);
-        i++;
-    }
-}
-
-void mini_map(t_env *current)
-{
-    int x;
-    int y;
-
-    x = 0;
-    y = 0;
-    while (y != HEIGHT_MAP)
-    {
-        x = 0;
-        while (x != WIDTH_MAP)
-        {
-            if (current->map[y][x] == 1)
-            {
-                draw_cube(x + 1, y + 1, current);
-            }
-            x++;
-        }
-        y++;
-    }
-    ft_drawplayer(current);
-}
-
-int draw(t_env *all)
-{
-    t_env *current;
-
-    current = all;
     mlx_clear_window(current->t_mlx->mlx, current->t_mlx->window);
     ft_sky(current);
     draw_all(current);
