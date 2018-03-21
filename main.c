@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/19 21:12:43 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/20 21:18:12 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,6 @@ int keydown(int keycode, t_env *all)
         all->events->d = 1;
     keydown_after(all);
     return(0);
-}
-
-int ft_printmap(t_env *current)
-{
-    int y;
-    int x;
-
-    y = 0;
-    while(y != HEIGHT_MAP)
-    {
-        x = 0;
-        while (x != WIDTH_MAP)
-        {
-            printf("%d ", current->map[y][x]);
-            x++;
-        }
-        printf("\n");
-        y++;
-    }
-    return (0);
 }
 
 int exit_hook(t_env *e)
@@ -78,17 +58,13 @@ int main(int argc, char **argv)
     t_env *e;
 
     if (argc != 2)
-    {
         exit(1);
-    }
     e = init_env();
     ft_initread(argv[1], e);
-    ft_printmap(e);
     draw(e);
     mlx_hook(e->t_mlx->window, 2, 0, keydown, e);
     mlx_hook(e->t_mlx->window, 17, 0, exit_hook, e);
     mlx_hook(e->t_mlx->window, 3, 0, key_unhook, e);
-    //mlx_expose_hook(e->t_mlx->mlx, no_event, e);
     mlx_loop(e->t_mlx->mlx);
     return (0);
 }

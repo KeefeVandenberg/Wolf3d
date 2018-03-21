@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/19 18:12:09 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/20 20:34:26 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,9 @@ void                mini_map(t_env *current);
 int                 draw(t_env *current);
 void		        ft_exit(t_env *e);
 int                 keydown_after(t_env *all);
-void                draw_vert(int x, int start, int end, int color, t_env *all);
+void                draw_vert(int x, int start, int end, t_env *all);
 int                 ft_initread(char *str, t_env *all);
+int                 color_picker(t_env *current);
+void                ft_sky(t_env *all);
 
 #endif

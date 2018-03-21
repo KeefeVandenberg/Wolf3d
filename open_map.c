@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/20 21:39:34 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/20 23:14:48 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ int	ft_initread(char *str, t_env *all)
 	index = -1;
 	current = all;
 	ft_bzero(buf, 42);
-	if (!(fd = open(str, O_RDONLY)))
+	if (0 > (fd = open(str, O_RDONLY)))
+	{
+		ft_putendl("Error : not valid file");
 		exit(1);
+	}
 	current->map = (int **)malloc(sizeof(int **) * HEIGHT_MAP);
-	while (0 < (read(fd, &buf, 36)))
+	while (35 < (read(fd, &buf, 36)))
 	{
 		if (++index == 0 || index == HEIGHT_MAP)
 			current->map[index] = surround(buf, WIDTH_MAP);

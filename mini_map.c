@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:26:57 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/19 18:17:55 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:32:43 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void draw_cube(int x, int y, t_env *all)
 
     while (px != (x * 5) + 5)
     {
-        draw_vert(px, py, py + 5, 0x4C4C4C, all);
+        all->ray->color = 0x4C4C4C;
+        draw_vert(px, py, py + 5, all);
         px++;
     }
 }
@@ -34,7 +35,8 @@ void ft_drawplayer(t_env *current)
     i = 0;
     while (i != 3)
     {
-        draw_vert(((current->ray->posX + 1) * 5) + i, (current->ray->posY + 1) * 5, ((current->ray->posY + 1) * 5) + 3, 0xFF0000, current);
+        current->ray->color = 0xFF0000;
+        draw_vert(((current->ray->posX + 1) * 5) + i, (current->ray->posY + 1) * 5, ((current->ray->posY + 1) * 5) + 3, current);
         i++;
     }
 }
