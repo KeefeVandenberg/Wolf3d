@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:03:04 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:12:27 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 int		*parse(char *str, int x)
 {
 	int *arr;
-	int i;
 	int k;
 
-	i = 0;
-	k = 0;
-	arr = (int *)malloc(sizeof(int) * x);
+	k = -1;
+	arr = (int *)malloc(sizeof(int *) * x);
 	while (*str)
 	{
-		if (ft_isdigit(*str) && k != x)
+		if (ft_isdigit(*str) && k <= x)
 		{
-			if (k == 0 || k == x)
-				arr[k] = 1;
-			else
-				arr[k] = str[0] - '0';
+			arr[k] = str[0] - '0';
 			k++;
 		}
 		str++;
 	}
+	arr[0] = 1;
+	arr[x - 1] = 1;
 	return (arr);
 }
 
@@ -42,7 +39,7 @@ int		*surround(char *str, int size)
 	int k;
 
 	k = 0;
-	i_str = (int *)malloc(sizeof(int) * size);
+	i_str = (int *)malloc(sizeof(int *) * size);
 	while (k != size)
 	{
 		i_str[k] = 1;
@@ -107,7 +104,7 @@ int		ft_initread(char *str, t_env *current)
 	{
 		if ((ft_checkcharacters(buf)) == 0)
 			ft_check_validread(buf, fd, current, index);
-		current->map[index] = ((index == 0 || index == HEIGHT_MAP)
+		current->map[index] = ((index == 0 || index == HEIGHT_MAP - 1)
 			? surround(buf, WIDTH_MAP) : parse(buf, WIDTH_MAP));
 		if (ft_strlen(ft_strstr(buf, "\n")) > 1 || current->bytes_read < 36)
 			ft_check_validread(buf, fd, current, index);
