@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 23:53:47 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:24:00 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ int		*parse(char *str, int x)
 	int *arr;
 	int k;
 
-	k = -1;
-	arr = (int *)malloc(sizeof(int) * x - 1);
+	k = 0;
+	arr = (int *)malloc(sizeof(int) * x);
 	while (*str)
 	{
-		if (ft_isdigit(*str) && k <= x)
+		if (ft_isdigit(str[0]) && k <= x)
 		{
 			arr[k] = str[0] - '0';
 			k++;
 		}
 		str++;
 	}
+	arr[17] = 1;
 	arr[0] = 1;
-	arr[x - 1] = 1;
 	return (arr);
 }
 
@@ -109,6 +109,7 @@ int		ft_initread(char *str, t_env *current)
 		if (ft_strlen(ft_strstr(buf, "\n")) > 1 || current->bytes_read < 36)
 			ft_check_validread(buf, fd, current, index);
 		ft_bzero(buf, 42);
+		printf("\n");
 	}
 	current->bytes_read = 36;
 	ft_check_validread(buf, fd, current, index);
