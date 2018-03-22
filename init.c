@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:41:51 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/20 15:08:39 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 14:45:55 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_exit(t_env *e)
 	free(e->ray);
 	free(e->t_mlx);
 	free(e->events);
-	while (i != HEIGHT_MAP)
+	while (i != HEIGHT_MAP - 1)
 		free(e->map[i++]);
 	free(e->map);
 	free(e);

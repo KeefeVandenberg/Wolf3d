@@ -6,11 +6,25 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/20 21:43:09 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:58:11 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int		ft_checkcharacters(char *buf)
+{
+	int i;
+
+	i = 0;
+	while (buf[i])
+	{
+		if (!(buf[i] == ' ' || ft_isdigit(buf[i]) || buf[i] == '\n'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	pixel_put_img(t_env *j, int x, int y, int color)
 {
