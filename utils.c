@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:47:04 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:18:22 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_sky(t_env *all)
 {
 	int		x;
 	int		roof;
-	int		y;
 	int		ground;
 	t_env	*current;
 

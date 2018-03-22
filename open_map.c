@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 20:12:27 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:18:08 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		*parse(char *str, int x)
 	return (arr);
 }
 
-int		*surround(char *str, int size)
+int		*surround(int size)
 {
 	int *i_str;
 	int k;
@@ -105,7 +105,7 @@ int		ft_initread(char *str, t_env *current)
 		if ((ft_checkcharacters(buf)) == 0)
 			ft_check_validread(buf, fd, current, index);
 		current->map[index] = ((index == 0 || index == HEIGHT_MAP - 1)
-			? surround(buf, WIDTH_MAP) : parse(buf, WIDTH_MAP));
+			? surround(WIDTH_MAP) : parse(buf, WIDTH_MAP));
 		if (ft_strlen(ft_strstr(buf, "\n")) > 1 || current->bytes_read < 36)
 			ft_check_validread(buf, fd, current, index);
 		ft_bzero(buf, 42);
