@@ -6,7 +6,7 @@
 #    By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/12 18:14:56 by kvandenb          #+#    #+#              #
-#    Updated: 2018/03/21 17:02:47 by kvandenb         ###   ########.fr        #
+#    Updated: 2018/03/21 23:40:01 by kvandenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,7 @@ all: $(name)
 $(name):
 	@$(make_mlx)
 	@$(make_libft)
-	@$(cc) $(libx_flags) -g $(SRC) $(includes) -o $(name)
-	clear
+	@$(cc) $(libx_flags) $(cflags) -g $(SRC) $(includes) -o $(name)
 	@printf "Created Wolf3d executable\n"
 
 clean:
