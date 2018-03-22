@@ -6,11 +6,22 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:41:51 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 14:45:55 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:02:36 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int			check_map(t_env *e)
+{
+	if (e->map[4][4] != 0 || e->map[5][4] != 0
+		|| e->map[4][5] != 0 || e->map[5][5] != 0)
+	{
+		ft_putendl("Error : not enough free spaces around starting area");
+		ft_exit(e);
+	}
+	return (0);
+}
 
 void		ft_exit(t_env *e)
 {

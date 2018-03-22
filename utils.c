@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 17:58:11 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:47:04 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	pixel_put_img(t_env *j, int x, int y, int color)
 	int		hex;
 
 	e = j;
+	if (y < 0)
+		y = 0;
+	if (x < 0)
+		x = 0;
 	if (x < WIDTH && y < HEIGHT)
 	{
 		hex = mlx_get_color_value(e->t_mlx->mlx, color);

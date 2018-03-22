@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:06:29 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:02:17 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	e = init_env();
 	ft_initread(argv[1], e);
+	check_map(e);
 	draw(e);
 	mlx_hook(e->t_mlx->window, 2, 0, keydown, e);
 	mlx_hook(e->t_mlx->window, 17, 0, exit_hook, e);

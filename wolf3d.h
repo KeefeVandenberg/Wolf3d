@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:13:13 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:03:05 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct		s_mlx
 
 typedef struct      s_player
 {
-	double          x;
-	double          y;
+	int				x;
+	int				y;
 	double          viewangle;
 }                   t_player;
 
@@ -120,5 +120,5 @@ int                 ft_initread(char *str, t_env *all);
 int                 color_picker(t_env *current);
 void                ft_sky(t_env *all);
 int                 ft_checkcharacters(char *buf);
-
+int					check_map(t_env *e);
 #endif

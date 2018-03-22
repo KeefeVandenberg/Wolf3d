@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/20 21:17:27 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:51:22 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	draw_all(t_env *all)
 			ray->drawStart = 0;
 		ray->drawEnd = ray->lineHeight / 2 + HEIGHT / 2;
 		if (ray->drawEnd >= HEIGHT)
-			ray->drawEnd = HEIGHT;
+			ray->drawEnd = HEIGHT - 1;
 		color_picker(current);
 		draw_vert(x, ray->drawStart, ray->drawEnd, current);
 	}
