@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/22 14:24:00 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:55:39 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int		ft_initread(char *str, t_env *current)
 		if (ft_strlen(ft_strstr(buf, "\n")) > 1 || current->bytes_read < 36)
 			ft_check_validread(buf, fd, current, index);
 		ft_bzero(buf, 42);
-		printf("\n");
 	}
 	current->bytes_read = 36;
 	ft_check_validread(buf, fd, current, index);
