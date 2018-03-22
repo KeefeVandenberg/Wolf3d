@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:59:21 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 20:18:22 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:54:05 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		color_picker(t_env *current)
 	int		i;
 
 	ray = current->ray;
-	i = current->map[ray->mapY][ray->mapX];
+	i = current->map[ray->mapy][ray->mapx];
 	if (i > 5)
 		i = i % 5;
 	if (i == 1)

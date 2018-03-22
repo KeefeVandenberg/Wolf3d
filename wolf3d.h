@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:19:04 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 19:03:05 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:56:37 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # include <fcntl.h>
 # include "math.h"
 
-typedef struct		s_mlx
+typedef struct		s_mls
 {
 	void			*mlx;
 	void			*image;
@@ -48,77 +48,78 @@ typedef struct		s_mlx
 	int				endian;
 	int				sl;
 	int				bpp;
-}					t_mlx;
+}					t_mls;
 
-typedef struct      s_player
+typedef struct		s_player
 {
 	int				x;
 	int				y;
-	double          viewangle;
-}                   t_player;
+	double			viewangle;
+}					t_player;
 
-typedef struct      s_ray
+typedef struct		s_ray
 {
-	double          planeX;
-	double          planeY;
-	double          posX;
-	double          posY;
-	int             mapX;
-	int             mapY;
-	double          sideDistX;
-	double          sideDistY;
-	double          dirX;
-	double          dirY;
-	double          oldDirX;
-	double          oldPlaneX;
-	double          cameraX;
-	double          rayDirX;
-	double          rayDirY;
-	double          deltaDistX;
-	double          deltaDistY;
-	double          perpWallDist;
-	int             stepX;
-	int             stepY;
-	int             side;
-	int             hit;
-	double          time;
-	double          oldTime;
-	int             lineHeight;
-	int             drawStart;
-	int             drawEnd;
-	int             color;
-	double          frameTime;
-}                   t_ray;
+	double			planex;
+	double			planey;
+	double			posx;
+	double			posy;
+	int				mapx;
+	int				mapy;
+	double			sidedistx;
+	double			sidedisty;
+	double			dirx;
+	double			diry;
+	double			olddirx;
+	double			oldplanex;
+	double			camerax;
+	double			raydirx;
+	double			raydiry;
+	double			deltadistx;
+	double			deltadisty;
+	double			perpwalldist;
+	int				stepx;
+	int				stepy;
+	int				side;
+	int				hit;
+	double			time;
+	double			oldtime;
+	int				lineheight;
+	int				drawstart;
+	int				drawend;
+	int				color;
+	double			frametime;
+}					t_ray;
 
-typedef struct      s_events
+typedef struct		s_events
 {
-	int             w;
-	int             a;
-	int             s;
-	int             d;
-	int             crouch_offset;
-}                   t_events;
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				crouch_offset;
+}					t_events;
 
-typedef struct      s_env
+typedef struct		s_env
 {
-	t_player        *player;
-	t_ray           *ray;
-	t_mlx           *t_mlx;
-	t_events        *events;
-	int             **map;
-	int             bytes_read;
-}                   t_env;
+	t_player		*player;
+	t_ray			*ray;
+	t_mls			*t_mlx;
+	t_events		*events;
+	int				**map;
+	int				bytes_read;
+}					t_env;
 
-int                 keydown_after(t_env *all);
-t_env               *init_env(void);
-void                mini_map(t_env *current);
-int                 draw(t_env *current);
-void		        ft_exit(t_env *e);
-int                 keydown_after(t_env *all);
-void                draw_vert(int x, int start, int end, t_env *all);
-int                 ft_initread(char *str, t_env *all);
-int                 color_picker(t_env *current);
-void                ft_sky(t_env *all);
-int                 ft_checkcharacters(char *buf);
+int					keydown_after(t_env *all);
+t_env				*init_env(void);
+void				mini_map(t_env *current);
+int					draw(t_env *current);
+void				ft_exit(t_env *e);
+int					keydown_after(t_env *all);
+void				draw_vert(int x, int start, int end, t_env *all);
+int					ft_initread(char *str, t_env *all);
+int					color_picker(t_env *current);
+void				ft_sky(t_env *all);
+int					ft_checkcharacters(char *buf);
 int					check_map(t_env *e);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:41:51 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 19:02:36 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:55:49 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_ray		*init_ray(void)
 
 	if (!(e = malloc(sizeof(t_ray))))
 		return (NULL);
-	e->dirX = -1.0;
-	e->dirY = 0.0;
-	e->planeX = 0;
-	e->planeY = 2 * (atan(.45 / 1.0));
+	e->dirx = -1.0;
+	e->diry = 0.0;
+	e->planex = 0;
+	e->planey = 2 * (atan(.45 / 1.0));
 	return (e);
 }
 
@@ -72,7 +72,7 @@ t_env		*init_env(void)
 		ft_exit(e);
 	if (!(e->player = malloc(sizeof(t_player))))
 		ft_exit(e);
-	if (!(e->t_mlx = malloc(sizeof(t_mlx))))
+	if (!(e->t_mlx = malloc(sizeof(t_mls))))
 		ft_exit(e);
 	if ((e->t_mlx->mlx = mlx_init()) == NULL)
 		ft_exit(e);
@@ -85,7 +85,7 @@ t_env		*init_env(void)
 	e->events = init_events();
 	e->player->x = 5;
 	e->player->y = 5;
-	e->ray->posX = e->player->x;
-	e->ray->posY = e->player->y;
+	e->ray->posx = e->player->x;
+	e->ray->posy = e->player->y;
 	return (e);
 }

@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 17:47:49 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:51:22 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:55:10 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 void	pre_ray(t_ray *ray, int x)
 {
-	ray->cameraX = 2 * x / (double)(WIDTH) - 1;
-	ray->rayDirX = ray->dirX + ray->planeX * ray->cameraX;
-	ray->rayDirY = ray->dirY + ray->planeY * ray->cameraX;
-	ray->mapX = (int)ray->posX;
-	ray->mapY = (int)ray->posY;
-	ray->deltaDistX = fabs(1 / ray->rayDirX);
-	ray->deltaDistY = fabs(1 / ray->rayDirY);
+	ray->camerax = 2 * x / (double)(WIDTH) - 1;
+	ray->raydirx = ray->dirx + ray->planex * ray->camerax;
+	ray->raydiry = ray->diry + ray->planey * ray->camerax;
+	ray->mapx = (int)ray->posx;
+	ray->mapy = (int)ray->posy;
+	ray->deltadistx = fabs(1 / ray->raydirx);
+	ray->deltadisty = fabs(1 / ray->raydiry);
 	ray->hit = 0;
 }
 
 void	dir_ray(t_ray *ray)
 {
-	if (ray->rayDirX < 0)
+	if (ray->raydirx < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDistX = (ray->posX - ray->mapX) * ray->deltaDistX;
+		ray->stepx = -1;
+		ray->sidedistx = (ray->posx - ray->mapx) * ray->deltadistx;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - ray->posX) * ray->deltaDistX;
+		ray->stepx = 1;
+		ray->sidedistx = (ray->mapx + 1.0 - ray->posx) * ray->deltadistx;
 	}
-	if (ray->rayDirY < 0)
+	if (ray->raydiry < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDistY = (ray->posY - ray->mapY) * ray->deltaDistY;
+		ray->stepy = -1;
+		ray->sidedisty = (ray->posy - ray->mapy) * ray->deltadisty;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - ray->posY) * ray->deltaDistY;
+		ray->stepy = 1;
+		ray->sidedisty = (ray->mapy + 1.0 - ray->posy) * ray->deltadisty;
 	}
 }
 
@@ -52,25 +52,25 @@ void	hit_ray(t_env *current, t_ray *ray)
 {
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->sidedistx < ray->sidedisty)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
+			ray->sidedistx += ray->deltadistx;
+			ray->mapx += ray->stepx;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
+			ray->sidedisty += ray->deltadisty;
+			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (WIDTH_MAP <= ray->mapX || ray->mapX <= 0
-			|| ray->mapY <= 0 || HEIGHT_MAP < ray->mapY)
+		if (WIDTH_MAP <= ray->mapx || ray->mapx <= 0
+			|| ray->mapy <= 0 || HEIGHT_MAP < ray->mapy)
 		{
 			ray->hit = 1;
 			break ;
 		}
-		if (current->map[ray->mapY][ray->mapX] != 0)
+		if (current->map[ray->mapy][ray->mapx] != 0)
 			ray->hit = 1;
 	}
 }
@@ -89,18 +89,18 @@ void	draw_all(t_env *all)
 		pre_ray(ray, x);
 		dir_ray(ray);
 		hit_ray(current, ray);
-		ray->perpWallDist = ray->side == 0 ? (ray->mapX - ray->posX +
-			(1 - ray->stepX) / 2) / ray->rayDirX : (ray->mapY -
-			ray->posY + (1 - ray->stepY) / 2) / ray->rayDirY;
-		ray->lineHeight = (int)(HEIGHT / ray->perpWallDist);
-		ray->drawStart = -ray->lineHeight / 2 + HEIGHT / 2;
-		if (ray->drawStart < 0)
-			ray->drawStart = 0;
-		ray->drawEnd = ray->lineHeight / 2 + HEIGHT / 2;
-		if (ray->drawEnd >= HEIGHT)
-			ray->drawEnd = HEIGHT - 1;
+		ray->perpwalldist = ray->side == 0 ? (ray->mapx - ray->posx +
+			(1 - ray->stepx) / 2) / ray->raydirx : (ray->mapy -
+			ray->posy + (1 - ray->stepy) / 2) / ray->raydiry;
+		ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
+		ray->drawstart = -ray->lineheight / 2 + HEIGHT / 2;
+		if (ray->drawstart < 0)
+			ray->drawstart = 0;
+		ray->drawend = ray->lineheight / 2 + HEIGHT / 2;
+		if (ray->drawend >= HEIGHT)
+			ray->drawend = HEIGHT - 1;
 		color_picker(current);
-		draw_vert(x, ray->drawStart, ray->drawEnd, current);
+		draw_vert(x, ray->drawstart, ray->drawend, current);
 	}
 }
 

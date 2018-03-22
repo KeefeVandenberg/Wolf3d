@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:26:57 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 18:04:36 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 20:51:40 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_drawplayer(t_env *current)
 	while (i != 3)
 	{
 		current->ray->color = 0xFF0000;
-		draw_vert(((current->ray->posX + 1) * 5) + i, (current->ray->posY + 1)
-			* 5, ((current->ray->posY + 1) * 5) + 3, current);
+		draw_vert(((current->ray->posx + 1) * 5) + i, (current->ray->posy + 1)
+			* 5, ((current->ray->posy + 1) * 5) + 3, current);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 19:37:37 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 19:02:17 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 23:49:53 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,34 @@ int	no_event(t_env *all)
 	return (0);
 }
 
+void ft_print_map(t_env *e)
+{
+	int y;
+	int x;
+
+	y = 0;
+	while(y != HEIGHT_MAP)
+	{
+		x = 0;
+		while (x != WIDTH_MAP)
+		{
+			printf("%d ", e->map[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_env *e;
 
-	if (argc != 2)
+	if (argc != 2 || argv[0] == NULL)
 		exit(1);
 	e = init_env();
 	ft_initread(argv[1], e);
+	ft_print_map(e);
 	check_map(e);
 	draw(e);
 	mlx_hook(e->t_mlx->window, 2, 0, keydown, e);

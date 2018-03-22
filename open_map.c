@@ -6,7 +6,7 @@
 /*   By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 17:21:48 by kvandenb          #+#    #+#             */
-/*   Updated: 2018/03/21 20:18:08 by kvandenb         ###   ########.fr       */
+/*   Updated: 2018/03/21 23:53:47 by kvandenb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		*parse(char *str, int x)
 	int k;
 
 	k = -1;
-	arr = (int *)malloc(sizeof(int *) * x);
+	arr = (int *)malloc(sizeof(int) * x - 1);
 	while (*str)
 	{
 		if (ft_isdigit(*str) && k <= x)
@@ -39,7 +39,7 @@ int		*surround(int size)
 	int k;
 
 	k = 0;
-	i_str = (int *)malloc(sizeof(int *) * size);
+	i_str = (int *)malloc(sizeof(int) * size - 1);
 	while (k != size)
 	{
 		i_str[k] = 1;
@@ -55,7 +55,7 @@ void	ft_finish_malloc(int index, t_env *e)
 	all = e;
 	while (index != HEIGHT_MAP - 1)
 	{
-		all->map[index] = malloc(sizeof(int *) * 5);
+		all->map[index] = malloc(sizeof(int) * 5);
 		index++;
 	}
 }
