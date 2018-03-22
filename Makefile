@@ -6,7 +6,7 @@
 #    By: kvandenb <kvandenb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/12 18:14:56 by kvandenb          #+#    #+#              #
-#    Updated: 2018/03/21 23:40:01 by kvandenb         ###   ########.fr        #
+#    Updated: 2018/03/22 14:54:09 by kvandenb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,21 @@ all: $(name)
 
 $(name):
 	@$(make_mlx)
+	@printf "\e[1;31mMaking libft\e[0m\n"
 	@$(make_libft)
+	@printf "\e[1;31mMaking wolf3d\e[0m\n"
 	@$(cc) $(libx_flags) $(cflags) -g $(SRC) $(includes) -o $(name)
-	@printf "Created Wolf3d executable\n"
+	@printf "\e[1;32mCreated Wolf3d executable\e[0m\n"
 
 clean:
 	@make -C minilibx_macos/ clean
 	@make -C GNL/libft/ clean
 	@/bin/rm -f $(name)
+	@printf "\e[36mNice and clean\e[0m\n"
 
 fclean:
 	@make -C GNL/libft/ fclean
 	@make -C minilibx_macos/ clean
+	@printf "\e[35mEven cleaner\e[0m\n"
 
 re : clean fclean all
