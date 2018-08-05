@@ -14,5 +14,5 @@ This project is meant to create the 1992 game Wolfenstein 3d.
   Test it!! <br />
   
 ## Debugging
-  if the program doesn't compile your mac OS might not be up to date.
-  
+  if the program doesn't compile your macOS might not be up to date. <br />
+  if your program continues to throw error codes try comparing your map to mine <br />
